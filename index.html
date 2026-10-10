@@ -84,6 +84,7 @@
                 <nav class="hidden md:flex items-center space-x-1 lg:space-x-6">
                     <button onclick="switchTab('home')" id="nav-home" class="nav-btn px-3 py-2 rounded-lg text-sm font-bold text-indigo-600 bg-indigo-50 transition">首頁投票</button>
                     <button onclick="switchTab('rules')" id="nav-rules" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50 transition">活動簡章</button>
+                    <button onclick="switchTab('safety')" id="nav-safety" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50 transition">防詐指南</button>
                     <button onclick="switchTab('privacy')" id="nav-privacy" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50 transition">隱私權政策</button>
                     <button onclick="switchTab('terms')" id="nav-terms" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50 transition">服務條款</button>
                 </nav>
@@ -108,6 +109,7 @@
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-4 space-y-2">
             <button onclick="switchTab('home'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-base font-bold text-indigo-600 bg-indigo-50">首頁投票</button>
             <button onclick="switchTab('rules'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100">活動簡章</button>
+            <button onclick="switchTab('safety'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100">防詐指南</button>
             <button onclick="switchTab('winners'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100">歷屆得獎</button>
             <button onclick="switchTab('privacy'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100">隱私權政策</button>
             <button onclick="switchTab('terms'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100">服務條款</button>
@@ -191,7 +193,7 @@
                     <div class="bg-indigo-50 p-6 rounded-2xl border-l-4 border-indigo-600">
                         <h3 class="font-bold text-indigo-900 text-lg mb-2"><i class="fa-solid fa-circle-exclamation mr-2"></i>重要資安防詐聲明</h3>
                         <p class="text-sm text-indigo-800">
-                            本網站特別設置「網路釣魚模擬體驗」。當您在人氣投票中嘗試點擊「立即投票」或「登入」時，系統將會彈出警告，提醒您在日常生活中切勿輕信未經官方驗證的非官方投票網址、不明LINE好友邀請或簡訊驗證碼！
+                            本網站特別設置「網路釣魚模擬體驗」。當您嘗試使用第三方帳號授權、要求簡訊驗證碼或提交驗證資料時，系統會依照剛才的操作說明風險，提醒您先查證網站與授權內容。
                         </p>
                     </div>
 
@@ -219,6 +221,96 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- ================= TAB: PHISHING & SCAM SAFETY GUIDE ================= -->
+        <div id="tab-safety" class="tab-content hidden max-w-5xl mx-auto px-4 py-12">
+            <article class="bg-white rounded-3xl shadow-md border border-gray-100 overflow-hidden">
+                <header class="bg-gradient-to-r from-slate-900 via-indigo-900 to-teal-800 text-white px-6 py-10 sm:px-10 sm:py-12">
+                    <span class="text-xs font-bold uppercase tracking-wider text-teal-200">Online Safety Guide</span>
+                    <h2 class="text-3xl sm:text-4xl font-black mt-2">看懂釣魚與詐騙，守住帳號與財產</h2>
+                    <p class="max-w-3xl text-sm sm:text-base leading-relaxed text-slate-100 mt-4">詐騙不只是陌生連結，也可能是假冒親友、客服或投票活動。了解對方如何取得信任、資料可能如何被利用，以及遇到可疑要求時可以怎麼做。</p>
+                </header>
+
+                <div class="p-6 sm:p-10 space-y-10 text-gray-700 leading-relaxed">
+                    <div class="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-xl text-amber-950">
+                        <h3 class="font-bold text-lg mb-1"><i class="fa-solid fa-triangle-exclamation mr-2 text-amber-600"></i>先記住這件事</h3>
+                        <p class="text-sm">真正的機關、銀行或平台不會要求你把密碼、簡訊驗證碼或網銀核准通知交給對方。遇到催促、威脅或「再做一步就能領獎／解鎖帳號」時，先停止操作，改用自己找到的官方管道查證。</p>
+                    </div>
+
+                    <section>
+                        <h3 class="text-xl font-black text-gray-900 mb-3">什麼是網路釣魚？為什麼後果可能很嚴重？</h3>
+                        <p>釣魚是利用假冒的網站、訊息、電子郵件或社群帳號，誘使你點連結、登入、提供資料、授權帳號或安裝程式。詐騙者常冒充可信任的人或機構，讓你在時間壓力下放下戒心。這不是「只有不小心的人才會上當」；精心設計的訊息也可能讓人難以立即分辨。</p>
+                        <ul class="list-disc pl-6 mt-3 space-y-2 text-sm">
+                            <li><strong>帳號被接管：</strong>電子郵件或社群帳號失守後，詐騙者可能冒充你向親友借錢、散播連結，或利用信箱重設其他服務的密碼。</li>
+                            <li><strong>金錢與交易損失：</strong>交出金融資料、驗證碼或核准不明通知，可能讓他人登入帳戶、進行轉帳或綁定付款工具；款項追回也可能耗時且不一定成功。</li>
+                            <li><strong>身分與隱私遭冒用：</strong>姓名、電話、地址、證件或通訊錄資料可能被拼湊，用於冒名申辦、精準詐騙或持續騷擾。</li>
+                            <li><strong>裝置與工作受影響：</strong>安裝不明程式或開啟惡意附件，可能造成資料外洩、檔案遭加密、裝置被遠端操控，甚至影響共用的工作或家庭帳號。</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3 class="text-xl font-black text-gray-900 mb-3">常見的詐騙情境</h3>
+                        <div class="grid sm:grid-cols-2 gap-4 text-sm">
+                            <div class="border border-gray-200 rounded-xl p-4">
+                                <h4 class="font-bold text-gray-900 mb-1">假投票、假活動與假客服</h4>
+                                <p>以「幫忙投票」「領獎」「帳號異常」為由，要求社群登入、綁定手機、提供驗證碼或掃描 QR Code。</p>
+                            </div>
+                            <div class="border border-gray-200 rounded-xl p-4">
+                                <h4 class="font-bold text-gray-900 mb-1">假冒親友或公務機關</h4>
+                                <p>使用被盜帳號、仿造來電顯示或相似名稱，製造急需用錢、涉及案件或需要保密的情境。</p>
+                            </div>
+                            <div class="border border-gray-200 rounded-xl p-4">
+                                <h4 class="font-bold text-gray-900 mb-1">假投資、假求職與假購物</h4>
+                                <p>用保證獲利、先匯款才能領薪、低價商品或退款補償吸引你轉帳、提供金融資料或離開正規平台交易。</p>
+                            </div>
+                            <div class="border border-gray-200 rounded-xl p-4">
+                                <h4 class="font-bold text-gray-900 mb-1">遠端操控與惡意程式</h4>
+                                <p>假稱協助退款、排除故障或保護帳戶，要求安裝遠端控制程式、開啟螢幕分享或下載不明檔案。</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3 class="text-xl font-black text-gray-900 mb-3">看到這些訊號，請先停下來</h3>
+                        <ul class="list-disc pl-6 space-y-2 text-sm">
+                            <li>要求提供密碼、簡訊驗證碼、網銀核准通知，或要求你代收、轉交款項。</li>
+                            <li>用倒數、威脅停權、保證獲利或「只有你能幫忙」逼你立刻決定。</li>
+                            <li>要求改到陌生網址、私訊帳號或通訊軟體繼續處理，或要求保密、不准聯絡家人。</li>
+                            <li>要求匯款到個人帳戶、購買點數／虛擬貨幣，或安裝遠端操控及不明程式。</li>
+                            <li>網址、寄件地址或帳號名稱和官方資訊相似但不完全一致。網址有鎖頭或使用 HTTPS，只代表連線加密，不能證明網站可信。</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3 class="text-xl font-black text-gray-900 mb-3">日常防範：每次多做一個查證動作</h3>
+                        <ol class="list-decimal pl-6 space-y-2 text-sm">
+                            <li><strong>不要直接點訊息中的連結。</strong>自行開啟官方 App，或手動輸入已知的官方網址；也可使用卡片或帳單上的電話回撥查證。</li>
+                            <li><strong>確認完整網址與要求內容。</strong>核對真正的網域名稱，不只看標誌、頁面外觀或搜尋結果摘要；不確定時，從另一個可信管道聯絡機構。</li>
+                            <li><strong>保護密碼與驗證碼。</strong>不同服務使用不同密碼，優先啟用多因素驗證；驗證碼只用於自己發起的登入或交易，不轉告任何人。</li>
+                            <li><strong>審慎授權與付款。</strong>看清楚第三方登入要求的權限、付款對象與金額；不需要的權限不要核准，不因對方催促而按下確認。</li>
+                            <li><strong>保持裝置與帳號更新。</strong>更新作業系統與 App，只從官方商店安裝程式，定期檢查登入工作階段及已授權的第三方服務。</li>
+                            <li><strong>用另一個管道核實急事。</strong>親友突然借錢或要求提供資料時，掛斷後用原本保存的電話回撥；不要只回覆同一個可疑帳號。</li>
+                        </ol>
+                    </section>
+
+                    <section>
+                        <h3 class="text-xl font-black text-gray-900 mb-3">已經點擊、輸入資料或匯款，怎麼辦？</h3>
+                        <ol class="list-decimal pl-6 space-y-2 text-sm">
+                            <li><strong>立刻停止互動。</strong>不要再輸入資料、付款、回覆訊息或依指示安裝程式。若只開啟連結但沒有輸入、下載或授權，先關閉頁面並留意帳號通知；風險仍取決於裝置和網站狀況。</li>
+                            <li><strong>若交出密碼或核准登入：</strong>使用可信任的裝置，從官方 App 或自行輸入的官方網址更改密碼、登出其他工作階段、撤銷可疑授權，並檢查復原信箱與多因素驗證設定。</li>
+                            <li><strong>若提供驗證碼、金融資料或已轉帳：</strong>立即用卡片或官方網站上的聯絡方式通知銀行／發卡機構，詢問停卡、暫停交易或帳戶保護；不要使用對方提供的電話號碼。</li>
+                            <li><strong>若安裝程式或開啟遠端控制：</strong>停止遠端連線並中斷裝置網路，改用另一台可信任裝置聯絡相關服務或專業人員；不要在受疑裝置上繼續登入重要帳戶。</li>
+                            <li><strong>保留證據並尋求協助。</strong>保存網址、對話、電話、收據與交易紀錄，向相關平台通報；可撥打 <strong>165 反詐騙諮詢專線</strong>，若正遭受人身威脅或需要緊急協助，請聯絡警方。</li>
+                        </ol>
+                    </section>
+
+                    <aside class="bg-indigo-50 border border-indigo-100 rounded-2xl p-5 sm:p-6">
+                        <h3 class="font-bold text-indigo-950 mb-2"><i class="fa-solid fa-shield-halved mr-2 text-indigo-600"></i>記住：先停、再查、再處理</h3>
+                        <p class="text-sm text-indigo-900">不必在壓力下獨自判斷。先停止操作，透過自己找到的官方管道確認；若已受騙，越早聯絡銀行、平台與 165，越有機會及時保護帳號與交易。</p>
+                    </aside>
+                </div>
+            </article>
         </div>
 
         <!-- ================= TAB 3: PAST WINNERS (歷屆得獎) ================= -->
@@ -294,6 +386,7 @@
                 <ul class="space-y-2 text-xs">
                     <li><button onclick="switchTab('home')" class="hover:text-white transition">首頁人氣投票</button></li>
                     <li><button onclick="switchTab('rules')" class="hover:text-white transition">活動簡章與辦法</button></li>
+                    <li><button onclick="switchTab('safety')" class="hover:text-white transition">防詐指南</button></li>
                     <li><button onclick="switchTab('privacy')" class="hover:text-white transition">隱私權保護政策</button></li>
                     <li><button onclick="switchTab('terms')" class="hover:text-white transition">服務條款聲明</button></li>
                 </ul>
@@ -307,7 +400,7 @@
             </div>
         </div>
         <div class="max-w-7xl mx-auto pt-8 border-t border-gray-800 text-center text-xs text-gray-500">
-            &copy; 2026 七美兒少藝術教育協會 | 第十二屆全國海洋創意繪畫大賽. All Not Real.
+            &copy; 七美科技工作室 | 模擬詐騙釣魚資案教育網站. All Rights Reserved But Not Real Phishing.
         </div>
     </footer>
 
@@ -331,10 +424,10 @@
 
                 <!-- Quick Social Login Buttons -->
                 <div class="grid grid-cols-2 gap-3">
-                    <button type="button" onclick="triggerAntiPhishingWarning()" class="flex items-center justify-center space-x-2 py-2.5 px-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-bold text-xs shadow transition">
+                    <button type="button" onclick="triggerAntiPhishingWarning('lineAuthorization')" class="flex items-center justify-center space-x-2 py-2.5 px-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-bold text-xs shadow transition">
                         <i class="fa-brands fa-line text-base"></i><span>LINE 快速授權</span>
                     </button>
-                    <button type="button" onclick="triggerAntiPhishingWarning()" class="flex items-center justify-center space-x-2 py-2.5 px-4 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 rounded-xl font-bold text-xs shadow-sm transition">
+                    <button type="button" onclick="triggerAntiPhishingWarning('googleLogin')" class="flex items-center justify-center space-x-2 py-2.5 px-4 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 rounded-xl font-bold text-xs shadow-sm transition">
                         <i class="fa-brands fa-google text-base text-red-500"></i><span>Google 帳號登入</span>
                     </button>
                 </div>
@@ -346,7 +439,7 @@
                 </div>
 
                 <!-- Form Inputs -->
-                <form onsubmit="event.preventDefault(); triggerAntiPhishingWarning();" class="space-y-4">
+                <form onsubmit="event.preventDefault(); triggerAntiPhishingWarning('verificationSubmission');" class="space-y-4">
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">真實姓名 / 家長姓名</label>
                         <input type="text" id="fakeName" required placeholder="請輸入您的真實姓名" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
@@ -385,23 +478,20 @@
                 </div>
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-red-200 block">Cybersecurity Educational Alert</span>
-                    <h3 class="text-lg sm:text-xl font-black">【資安防詐教育警示】您剛才進行了危險操作！</h3>
+                    <h3 id="warningTitle" class="text-lg sm:text-xl font-black">【資安防詐教育警示】</h3>
                 </div>
             </div>
 
             <!-- Warning Body -->
             <div class="p-6 sm:p-8 space-y-5 text-gray-800">
                 <div class="bg-red-50 border-l-4 border-red-600 p-4 rounded-xl text-sm leading-relaxed text-red-900 font-medium">
-                    注意！這會導致嚴重的資安漏洞。任何投票、填入個資、社群授權或輸入驗證碼的網站，只要沒有正牌官方網域（如 <strong>.gov.tw</strong> 或大型官方機構網域），都是常見的網路釣魚與詐騙手法！
+                    <p id="warningExplanation"></p>
+                    <p class="mt-2 text-xs font-normal">本頁為資安教育模擬，不會傳送或保存您輸入的資料。以下說明的是在真實可疑網站進行相同操作時的風險。</p>
                 </div>
 
                 <div class="space-y-2 text-sm">
-                    <p class="font-bold text-gray-900"><i class="fa-solid fa-shield-virus text-red-600 mr-2"></i>此操作在真實網路世界中可能導致：</p>
-                    <ul class="list-disc pl-6 space-y-1.5 text-gray-700 text-xs sm:text-sm">
-                        <li><strong>社群帳號遭盜用</strong>（被不法分子拿去傳送假投資、借錢詐騙訊息給您的親友）。</li>
-                        <li><strong>個人隱私與通訊錄外洩</strong>，遭受後續源源不絕的推銷或詐騙簡訊騷擾。</li>
-                        <li><strong>接收假驗證碼</strong>導致小額付費扣款、數位錢包遭綁定或帳戶被盜領。</li>
-                        <li>手機或電腦被植入惡意程式或木馬連結。</li>
+                    <p id="warningRiskHeading" class="font-bold text-gray-900"><i class="fa-solid fa-shield-virus text-red-600 mr-2"></i>真實情境下可能造成：</p>
+                    <ul id="warningRisks" class="list-disc pl-6 space-y-1.5 text-gray-700 text-xs sm:text-sm">
                     </ul>
                 </div>
 
@@ -629,22 +719,86 @@
                 showCustomMessage('請先輸入正確的手機號碼才能接收驗證碼！');
                 return;
             }
-            showCustomMessage('【系統提示】已發送簡訊驗證碼至 ' + phoneInput + '（此為模擬演練，驗證碼為：888999）');
-            document.getElementById('fakeCode').value = '888999';
+            triggerAntiPhishingWarning('smsCodeRequest');
         }
 
+        
         function showCustomMessage(msg) {
-            // Safe non-blocking custom notification banner inside modal
             const subtitle = document.getElementById('modalSubtitle');
-            const originalText = subtitle.innerText;
-            subtitle.innerHTML = `<span class="text-amber-600 font-bold"><i class="fa-solid fa-circle-info mr-1"></i>${msg}</span>`;
+            const originalText = subtitle.textContent;
+
+            // 建立提示容器，不把使用者輸入解析成 HTML
+            const notice = document.createElement('span');
+            notice.className = 'text-amber-600 font-bold';
+
+            // 建立提示圖示
+            const icon = document.createElement('i');
+            icon.className = 'fa-solid fa-circle-info mr-1';
+            icon.setAttribute('aria-hidden', 'true');
+
+            // 將訊息當成純文字插入
+            notice.appendChild(icon);
+            notice.appendChild(document.createTextNode(msg));
+
+            // 安全替換提示內容
+            subtitle.replaceChildren(notice);
+
+            // 4 秒後恢復原本的文字
             setTimeout(() => {
-                subtitle.innerText = originalText;
-            }, 4000);
+                subtitle.textContent = originalText;
+            }, 5000);
         }
 
-        // CRITICAL ANTI-PHISHING TRIGGER
-        function triggerAntiPhishingWarning() {
+        const warningContent = {
+            lineAuthorization: {
+                title: '你剛才點選了 LINE 快速授權',
+                explanation: '你準備讓 LINE 帳號替這個投票頁面驗證身分。若網站是仿冒頁，授權畫面可能要求超出投票所需的個人資料或存取權限；若再輸入帳密或驗證碼，風險會更高。',
+                risks: [
+                    '授權過多資料可能讓陌生服務取得你的個人檔案或其他授權範圍內的資訊。',
+                    '若帳密或一次性驗證碼被交給假網站，LINE 帳號可能遭接管，並被用來冒充你聯絡親友。',
+                    '帳號資料外洩後，親友可能收到借錢、假投資或其他詐騙訊息。'
+                ]
+            },
+            googleLogin: {
+                title: '你剛才點選了 Google 帳號登入',
+                explanation: '你準備用 Google 帳號登入尚未查證的投票頁。仿冒登入頁可能竊取密碼或登入授權，讓攻擊者進一步接觸與帳號連結的服務。',
+                risks: [
+                    'Google 帳號可能遭他人登入，電子郵件、雲端檔案或聯絡人等資料可能被查看。',
+                    '攻擊者可能利用信箱重設其他網站密碼，擴大到社群、購物或金融服務。',
+                    '被盜帳號可能遭冒用，向你的聯絡人散播釣魚連結或索取金錢。'
+                ]
+            },
+            smsCodeRequest: {
+                title: '你剛才輸入手機號碼並要求簡訊驗證碼',
+                explanation: '在未確認網站身分前提供手機號碼，會讓對方知道如何直接聯絡你；假網站也可能誘使你把真正收到的一次性驗證碼交出去。',
+                risks: [
+                    '手機號碼可能被用於精準詐騙、冒名聯絡或持續發送垃圾簡訊。',
+                    '若把簡訊驗證碼提供給他人，對方可能登入你的帳號、變更設定或核准交易。',
+                    '即使對方知道你的姓名或手機，也不要依其指示轉帳、安裝程式或繼續提供資料。'
+                ]
+            },
+            verificationSubmission: {
+                title: '你剛才準備提交姓名、手機號碼與簡訊驗證碼',
+                explanation: '把可識別身分的資料和一次性驗證碼一起交給未查證的網站，會讓對方有機會將資料與帳號驗證串在一起；驗證碼不是一般的身分資料，不應轉交給投票頁或陌生人。',
+                risks: [
+                    '姓名與手機號碼可能被用來假冒客服或熟人，設計更具針對性的後續詐騙。',
+                    '有效的一次性驗證碼可能讓對方登入帳號、重設密碼或授權付款。',
+                    '姓名、手機與驗證情境遭掌握後，後續假客服或假投票訊息可能更具說服力，增加再次受騙的機會。'
+                ]
+            }
+        };
+
+        function triggerAntiPhishingWarning(action) {
+            const content = warningContent[action] || warningContent.verificationSubmission;
+            document.getElementById('warningTitle').textContent = '【資安防詐教育警示】' + content.title;
+            document.getElementById('warningExplanation').textContent = content.explanation;
+            const riskList = document.getElementById('warningRisks');
+            riskList.replaceChildren(...content.risks.map(risk => {
+                const item = document.createElement('li');
+                item.textContent = risk;
+                return item;
+            }));
+
             // Close the fake auth/vote modal immediately
             closeAuthModal();
 
