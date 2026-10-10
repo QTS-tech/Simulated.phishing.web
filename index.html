@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第十二屆全國兒童暨青少年創意繪畫大賽人氣投票</title>
+    <link rel="canonical" href="https://qts-tech.github.io/Simulated.phishing.web/">
+    <meta name="description" content="第十二屆全國海洋創意繪畫大賽人氣票選活動，瀏覽全台兒童與青少年入圍畫作，認識創作者並為喜愛的作品投票。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://qts-tech.github.io/Simulated.phishing.web/">
+    <meta property="og:locale" content="zh_TW">
+    <meta property="og:site_name" content="七美兒少藝術教育協會">
+    <meta property="og:title" content="第十二屆全國海洋創意繪畫大賽｜人氣票選">
+    <meta property="og:description" content="瀏覽兒童與青少年入圍畫作，認識創作者，為喜愛的海洋主題作品投下人氣票。">
+    <meta property="og:image" content="https://artcontest.namr.gov.tw/files/portfolio/114/b/B%23768.png?v=20220823">
+    <meta property="og:image:alt" content="第十二屆全國海洋創意繪畫大賽入圍作品">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="第十二屆全國海洋創意繪畫大賽｜人氣票選">
+    <meta name="twitter:description" content="瀏覽兒童與青少年入圍畫作，認識創作者，為喜愛的海洋主題作品投下人氣票。">
+    <meta name="twitter:image" content="https://artcontest.namr.gov.tw/files/portfolio/114/b/B%23768.png?v=20220823">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome for UI icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', 'Inter', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 50%, #06b6d4 100%);
+        }
+        .modal-fade-in {
+            animation: modalFadeIn 0.25s ease-out forwards;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <!-- Top Security & Info Banner -->
+    <div class="bg-indigo-900 text-white text-xs md:text-sm py-2 px-4 text-center font-medium shadow-inner">
+        <i class="fa-solid fa-shield-halved text-yellow-400 mr-2"></i> 【公告】詐騙釣魚須當心，個資不漏才安心，七美科技關心您！
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo & Title -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center text-white shadow-lg">
+                        <i class="fa-solid fa-palette text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs uppercase tracking-wider text-indigo-600 font-bold block">七美兒少藝術教育協會</span>
+                        <h1 class="text-lg md:text-xl font-black text-gray-900 tracking-tight">第十二屆全國海洋創意繪畫大賽</h1>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-6">
+                    <button onclick="switchTab('home')" id="nav-home" class="nav-btn px-3 py-2 rounded-lg text-sm font-bold text-indigo-600 bg-indigo-50 transition">首頁投票</button>
+                    <button onclick="switchTab('rules')" id="nav-rules" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50 transition">活動簡章</button>
+                    <button onclick="switchTab('privacy')" id="nav-privacy" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50 transition">隱私權政策</button>
+                    <button onclick="switchTab('terms')" id="nav-terms" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50 transition">服務條款</button>
+                </nav>
+
+                <!-- Action Button (Login / Vote Verification) -->
+                <div class="hidden sm:flex items-center space-x-3">
+                    <button onclick="openAuthModal()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-bold text-sm shadow-md hover:from-indigo-700 hover:to-blue-700 transition transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-user-check mr-2"></i>快速登入
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="p-2 rounded-lg text-gray-600 hover:text-indigo-600 hover:bg-gray-100 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl" id="mobile-menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-4 space-y-2">
+            <button onclick="switchTab('home'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-base font-bold text-indigo-600 bg-indigo-50">首頁投票</button>
+            <button onclick="switchTab('rules'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100">活動簡章</button>
+            <button onclick="switchTab('winners'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100">歷屆得獎</button>
+            <button onclick="switchTab('privacy'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100">隱私權政策</button>
+            <button onclick="switchTab('terms'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100">服務條款</button>
+            <div class="pt-2">
+                <button onclick="openAuthModal(); toggleMobileMenu();" class="w-full text-center px-4 py-2.5 rounded-xl bg-indigo-600 text-white font-bold text-sm shadow">
+                    <i class="fa-solid fa-user-check mr-2"></i>快速登入投票
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Body -->
+    <main class="flex-grow">
+
+        <!-- ================= TAB 1: HOME (ARTWORK GRID & VOTING) ================= -->
+        <div id="tab-home" class="tab-content">
+            <!-- Hero Banner Section -->
+            <div class="hero-gradient text-white py-14 px-4 sm:px-6 lg:px-8 mb-10 shadow-lg">
+                <div class="max-w-5xl mx-auto text-center space-y-4">
+                    <span class="inline-block bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-cyan-100 border border-white/30">
+                        <i class="fa-solid fa-award mr-1.5"></i> 網路人氣票選熱烈開跑中
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">用色彩點亮夢想，投下您神聖的一票！</h2>
+                    <p class="text-base sm:text-lg text-indigo-100 max-w-2xl mx-auto font-light">
+                        本屆大賽共收到來自全台超過 350 件優秀兒童及青少年畫作。經過嚴格初審，精選出 5 件決賽入圍作品進行網路人氣票選，快來支持喜愛的創作者！
+                    </p>
+                    
+                    <!-- Search & Filter Bar -->
+                    <div class="pt-4 max-w-2xl mx-auto flex flex-col sm:flex-row gap-3">
+                        <div class="relative flex-grow">
+                            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </span>
+                            <input type="text" id="searchInput" oninput="filterArtworks()" placeholder="搜尋作品名稱、作者或編號..." class="w-full pl-10 pr-4 py-3 rounded-xl bg-white/95 text-gray-900 placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-300 shadow-lg">
+                        </div>
+                        <select id="categoryFilter" onchange="filterArtworks()" class="px-4 py-3 rounded-xl bg-white/95 text-gray-900 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-cyan-300 shadow-lg cursor-pointer">
+                            <option value="all">所有組別</option>
+                            <option value="child">低年級組</option>
+                            <option value="youth">中年級組</option>
+                            <option value="teen">高年級組</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Artwork Grid Section -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+                <!-- Stats Bar -->
+                <div class="flex justify-between items-center mb-8 bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex items-center space-x-2 text-sm text-gray-600 font-medium">
+                        <i class="fa-solid fa-chart-pie text-indigo-600"></i>
+                        <span>顯示 <span id="artworkCount" class="font-bold text-gray-900">5</span> 件入圍作品</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-xs text-gray-500 font-medium">排序方式：</span>
+                        <select id="sortSelect" onchange="sortArtworks()" class="text-xs font-bold text-gray-700 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                            <option value="votes">得票數最高</option>
+                            <option value="id">作品編號排序</option>
+                            <option value="name">作品筆劃排序</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Grid Container -->
+                <div id="artworkGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <!-- Artwork cards populated dynamically via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB 2: RULES (活動簡章) ================= -->
+        <div id="tab-rules" class="tab-content hidden max-w-4xl mx-auto px-4 py-12">
+            <div class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 sm:p-12 space-y-8">
+                <div class="border-b pb-6">
+                    <span class="text-indigo-600 font-bold text-xs uppercase tracking-wider">Official Guidelines</span>
+                    <h2 class="text-3xl font-black text-gray-900 mt-1">第十二屆全國海洋創意繪畫大賽 - 活動簡章</h2>
+                    <p class="text-gray-500 text-sm mt-2">發布日期：2026年8月1日 | 主辦單位：七美兒少藝術教育協會</p>
+                </div>
+
+                <div class="space-y-6 text-gray-700 text-base leading-relaxed">
+                    <div class="bg-indigo-50 p-6 rounded-2xl border-l-4 border-indigo-600">
+                        <h3 class="font-bold text-indigo-900 text-lg mb-2"><i class="fa-solid fa-circle-exclamation mr-2"></i>重要資安防詐聲明</h3>
+                        <p class="text-sm text-indigo-800">
+                            本網站特別設置「網路釣魚模擬體驗」。當您在人氣投票中嘗試點擊「立即投票」或「登入」時，系統將會彈出警告，提醒您在日常生活中切勿輕信未經官方驗證的非官方投票網址、不明LINE好友邀請或簡訊驗證碼！
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-3 flex items-center"><span class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center mr-3 text-sm">1</span> 一、 活動宗旨</h3>
+                        <p class="pl-11 text-gray-600">為激發全國兒童與青少年之美學創造力，培養觀察力與想像力，以及發展海洋教育的重要性，並提供展現藝術才華之優質舞台，特舉辦本屆全國繪畫大賽。</p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-3 flex items-center"><span class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center mr-3 text-sm">2</span> 二、 參賽對象與組別</h3>
+                        <ul class="pl-11 list-disc space-y-2 text-gray-600">
+                            <li><strong>國小低年級組</strong>：全國公私立國民小學1-2年級生。</li>
+                            <li><strong>國小中年級組</strong>：全國公私立國民小學3-4年級生。</li>
+                            <li><strong>國小高年級組</strong>：全國公私立國民小學5-6年級生。</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-3 flex items-center"><span class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center mr-3 text-sm">3</span> 三、 網路人氣票選辦法</h3>
+                        <ol class="pl-11 list-decimal space-y-2 text-gray-600">
+                            <li>投票期間：即日起至 2026年 10 月 20 日 23:59 止。</li>
+                            <li>投票限制：每位使用者每日可投 3 票（不可重複投給同一作品）。</li>
+                            <li><strong>防詐提醒</strong>：切勿透過任何不明社群連結、LINE群組或私訊進行所謂「幫忙投票綁定手機號碼」或「輸入驗證碼領取獎金」等詐騙行為。</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB 3: PAST WINNERS (歷屆得獎) ================= -->
+        
+
+        <!-- ================= TAB 4: PRIVACY POLICY (隱私權政策) ================= -->
+        <div id="tab-privacy" class="tab-content hidden max-w-4xl mx-auto px-4 py-12">
+            <div class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 sm:p-12 space-y-6">
+                <div class="border-b pb-6">
+                    <span class="text-indigo-600 font-bold text-xs uppercase tracking-wider">Privacy & Security Notice</span>
+                    <h2 class="text-3xl font-black text-gray-900 mt-1">隱私權保護政策與資安教育聲明</h2>
+                    <p class="text-gray-500 text-sm mt-2">最後更新日期：2026年8月1日</p>
+                </div>
+
+                <div class="space-y-4 text-gray-700 text-sm leading-relaxed">
+                    <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-xl text-amber-900 font-medium">
+                        <strong>特別聲明：</strong>本網頁為七美科技工作室推廣之<strong>「網路釣魚防範模擬教育平台」</strong>。所有看似真實的投票、登入、填寫個資等介面，皆為模擬與資安教學用途，並不會收集或儲存您的任何真實個人資料。
+                    </div>
+
+                    <h3 class="font-bold text-gray-900 text-base pt-2">一、 網站之教育目的</h3>
+                    <p>本平台旨在透過高擬真度的線上活動介面（如繪畫大賽投票），模擬不肖份子常使用的網路釣魚（Phishing）手法。當使用者在未加防備下點擊不明連結並嘗試登入時，系統將即時發出資安警告，藉此加強大眾對假投票、假活動與假社群登入的警覺性。</p>
+
+                    <h3 class="font-bold text-gray-900 text-base pt-2">二、 資料蒐集與處理說明</h3>
+                    <p>在本模擬平台中，您所輸入的任何帳號、密碼、電話號碼或個人資訊，均僅在您的瀏覽器暫存或即時銷毀，絕不會傳輸至外部伺服器。請放心體驗。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB 5: TERMS OF SERVICE (服務條款) ================= -->
+        <div id="tab-terms" class="tab-content hidden max-w-4xl mx-auto px-4 py-12">
+            <div class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 sm:p-12 space-y-6">
+                <div class="border-b pb-6">
+                    <span class="text-indigo-600 font-bold text-xs uppercase tracking-wider">Terms of Service</span>
+                    <h2 class="text-3xl font-black text-gray-900 mt-1">服務條款與資安防詐教育聲明</h2>
+                    <p class="text-gray-500 text-sm mt-2">最後更新日期：2026年8月1日</p>
+                </div>
+
+                <div class="space-y-4 text-gray-700 text-sm leading-relaxed">
+                    <div class="bg-indigo-50 border-l-4 border-indigo-600 p-4 rounded-xl text-indigo-900 font-medium">
+                        <strong>教育體驗條款：</strong>歡迎使用本教育宣導平台。本網站所有內容、圖像與投票功能均為模擬展示，無實際之繪畫比賽名次效力，亦不涉及任何商業募資或收費。
+                    </div>
+
+                    <h3 class="font-bold text-gray-900 text-base pt-2">一、 智慧財產權聲明</h3>
+                    <p>本網站所展示之繪畫圖片均取自國家海洋研究院之「海洋與生活」全國兒童繪畫比賽，僅供模擬投票介面與模擬之用，無侵權意圖。</p>
+
+                    <h3 class="font-bold text-gray-900 text-base pt-2">二、 防範詐騙提醒</h3>
+                    <p>如您在真實網路生活中遇到要求「點擊不明連結投票」、「登入社群帳號領獎」、「輸入簡訊驗證碼以確認身分」等情況，請務必撥打 <strong>165 反詐騙專線</strong> 或向官方查證，切勿輕易上當。</p>
+
+                    <h3 class="font-bold text-gray-900 text-base pt-2">三、 平台聲明</h3>
+                    <p>本網站為模擬教育平台，所有內容均為虛構，僅供教學與宣導之用。使用者應在網路環境中保持警覺，切勿輕易提供個人敏感資訊，這個網站是模擬的，但網路是真實的。</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8 mt-auto border-t border-gray-800">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div class="space-y-3">
+                <div class="flex items-center space-x-3 text-white">
+                    <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
+                        <i class="fa-solid fa-shield text-sm"></i>
+                    </div>
+                    <span class="font-bold text-lg">模擬海洋創意繪畫大賽平台</span>
+                </div>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    本網站為推廣全民資安意識與網路釣魚防範而建置。藉由高度逼真的線上互動情境，提升民眾對各類新型網路詐騙的識詐與防詐能力，網站使用Google Gemini AI製作。
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3 uppercase tracking-wider">快速導覽</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><button onclick="switchTab('home')" class="hover:text-white transition">首頁人氣投票</button></li>
+                    <li><button onclick="switchTab('rules')" class="hover:text-white transition">活動簡章與辦法</button></li>
+                    <li><button onclick="switchTab('privacy')" class="hover:text-white transition">隱私權保護政策</button></li>
+                    <li><button onclick="switchTab('terms')" class="hover:text-white transition">服務條款聲明</button></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3 uppercase tracking-wider">反詐騙求助</h4>
+                <p class="text-xs text-gray-400 mb-3">若懷疑遭遇網路詐騙、釣魚網站或個資外洩，請立即尋求協助：</p>
+                <a href="https://165.npa.gov.tw" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition shadow">
+                    <i class="fa-solid fa-shield-cat mr-2 text-sm"></i> 內政部警政署 165 全民防騙網 <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
+                </a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-8 border-t border-gray-800 text-center text-xs text-gray-500">
+            &copy; 2026 七美兒少藝術教育協會 | 第十二屆全國海洋創意繪畫大賽. All Not Real.
+        </div>
+    </footer>
+
+
+    <!-- ================= MODAL 1: AUTH / VOTE DETAILS MODAL (FAKE FORM) ================= -->
+    <div id="authModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden modal-fade-in border border-gray-100">
+            <div class="bg-gradient-to-r from-indigo-600 to-blue-600 px-6 py-5 text-white flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-lock text-cyan-300"></i>
+                    <h3 id="modalTitle" class="font-bold text-lg">投票身分驗證與授權</h3>
+                </div>
+                <button onclick="closeAuthModal()" class="text-white/80 hover:text-white p-1 rounded-lg focus:outline-none">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-5">
+                <p id="modalSubtitle" class="text-xs text-gray-500 leading-relaxed">
+                    為了維護投票公平性，避免惡意灌票，請選擇以下方式快速完成身分驗證或填寫投票資料：
+                </p>
+
+                <!-- Quick Social Login Buttons -->
+                <div class="grid grid-cols-2 gap-3">
+                    <button type="button" onclick="triggerAntiPhishingWarning()" class="flex items-center justify-center space-x-2 py-2.5 px-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-bold text-xs shadow transition">
+                        <i class="fa-brands fa-line text-base"></i><span>LINE 快速授權</span>
+                    </button>
+                    <button type="button" onclick="triggerAntiPhishingWarning()" class="flex items-center justify-center space-x-2 py-2.5 px-4 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 rounded-xl font-bold text-xs shadow-sm transition">
+                        <i class="fa-brands fa-google text-base text-red-500"></i><span>Google 帳號登入</span>
+                    </button>
+                </div>
+
+                <div class="relative flex py-1 items-center">
+                    <div class="flex-grow border-t border-gray-200"></div>
+                    <span class="flex-shrink mx-4 text-gray-400 text-xs">或填寫個人驗證資料</span>
+                    <div class="flex-grow border-t border-gray-200"></div>
+                </div>
+
+                <!-- Form Inputs -->
+                <form onsubmit="event.preventDefault(); triggerAntiPhishingWarning();" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">真實姓名 / 家長姓名</label>
+                        <input type="text" id="fakeName" required placeholder="請輸入您的真實姓名" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">手機號碼 (接收驗證碼)</label>
+                        <input type="tel" id="fakePhone" required placeholder="例如：0912345678" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">簡訊驗證碼 (SMS Code)</label>
+                        <div class="flex space-x-2">
+                            <input type="text" id="fakeCode" required placeholder="輸入 6 位數驗證碼" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <button type="button" onclick="simulateSendCode()" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold rounded-xl whitespace-nowrap transition">取得驗證碼</button>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="submit" class="w-full py-3 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white font-bold rounded-xl text-sm shadow-md transition flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span id="modalSubmitText">確認提交並完成投票</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= MODAL 2: CYBERSECURITY WARNING MODAL (ANTI-PHISHING ALERT) ================= -->
+    <div id="warningModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-xl w-full overflow-hidden modal-fade-in border-4 border-red-500">
+            <!-- Warning Header -->
+            <div class="bg-red-600 px-6 py-5 text-white flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-white text-2xl flex-shrink-0 animate-pulse">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-red-200 block">Cybersecurity Educational Alert</span>
+                    <h3 class="text-lg sm:text-xl font-black">【資安防詐教育警示】您剛才進行了危險操作！</h3>
+                </div>
+            </div>
+
+            <!-- Warning Body -->
+            <div class="p-6 sm:p-8 space-y-5 text-gray-800">
+                <div class="bg-red-50 border-l-4 border-red-600 p-4 rounded-xl text-sm leading-relaxed text-red-900 font-medium">
+                    注意！這會導致嚴重的資安漏洞。任何投票、填入個資、社群授權或輸入驗證碼的網站，只要沒有正牌官方網域（如 <strong>.gov.tw</strong> 或大型官方機構網域），都是常見的網路釣魚與詐騙手法！
+                </div>
+
+                <div class="space-y-2 text-sm">
+                    <p class="font-bold text-gray-900"><i class="fa-solid fa-shield-virus text-red-600 mr-2"></i>此操作在真實網路世界中可能導致：</p>
+                    <ul class="list-disc pl-6 space-y-1.5 text-gray-700 text-xs sm:text-sm">
+                        <li><strong>社群帳號遭盜用</strong>（被不法分子拿去傳送假投資、借錢詐騙訊息給您的親友）。</li>
+                        <li><strong>個人隱私與通訊錄外洩</strong>，遭受後續源源不絕的推銷或詐騙簡訊騷擾。</li>
+                        <li><strong>接收假驗證碼</strong>導致小額付費扣款、數位錢包遭綁定或帳戶被盜領。</li>
+                        <li>手機或電腦被植入惡意程式或木馬連結。</li>
+                    </ul>
+                </div>
+
+                <div class="bg-indigo-50 p-4 rounded-2xl border border-indigo-100 flex items-start space-x-3">
+                    <i class="fa-solid fa-bullhorn text-indigo-600 text-lg mt-0.5"></i>
+                    <div class="text-xs sm:text-sm text-indigo-900 leading-relaxed">
+                        <strong>內政部警政署 165 全民防騙網提醒您：</strong><br>
+                        「陌生連結不點擊、個資驗證不亂填、社群授權多查證、可疑網址速撥 165！」
+                    </div>
+                </div>
+
+                <!-- Action Buttons in Warning Modal -->
+                <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                    <button onclick="closeWarningModal()" class="flex-1 py-3 bg-gray-800 hover:bg-gray-900 text-white rounded-xl font-bold text-sm transition shadow">
+                        <i class="fa-solid fa-arrow-rotate-left mr-2"></i> 我明白了，返回學習首頁
+                    </button>
+                    <a href="https://165.npa.gov.tw" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 bg-red-600 hover:bg-red-700 text-white rounded-xl font-bold text-sm transition shadow text-center flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>前往 165 全民防騙網查證</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= JAVASCRIPT LOGIC & DATA ================= -->
+    <script>
+        
+        // Curated List of 12 Artworks with reliable Unsplash direct URLs matching themes like children painting, watercolor, vibrant art
+        const artworks = [
+            {
+                id: 1,
+                code: "ART-001",
+                title: "《海龍王，和金魚一起守護海洋食物鏈》",
+                author: "張○榤",
+                category: "child",
+                categoryName: "中年級組",
+                image: "https://artcontest.namr.gov.tw/files/portfolio/114/b/B%23768.png?v=20220823",
+                votes: 1420
+            },
+            {
+                id: 2,
+                code: "ART-002",
+                title: "《撿垃圾的我與潛水艇》",
+                author: "曾○樂",
+                category: "youth",
+                categoryName: "高年級組",
+                image: "https://artcontest.namr.gov.tw/files/portfolio/114/c/C%23160.png?v=20220823",
+                votes: 1890
+            },
+            {
+                id: 3,
+                code: "ART-003",
+                title: "《探索海洋》",
+                author: "林○頡",
+                category: "teen",
+                categoryName: "中年級組",
+                image: "https://artcontest.namr.gov.tw/files/portfolio/114/b/B%23734.png?v=20220823",
+                votes: 2150
+            },
+            {
+                id: 4,
+                code: "ART-004",
+                title: "《世紀大發現》",
+                author: "徐○媛",
+                category: "child",
+                categoryName: "高年級組",
+                image: "https://artcontest.namr.gov.tw/files/portfolio/114/c/C%23054.png?v=20220823",
+                votes: 980
+            },
+            {
+                id: 5,
+                code: "ART-005",
+                title: "《仲夏夜的螢火蟲之歌》",
+                author: "陳○皓",
+                category: "youth",
+                categoryName: "中年級組",
+                image: "https://artcontest.namr.gov.tw/files/portfolio/114/b/B%23206.png?v=20220823",
+                votes: 1670
+            }
+        ];
+
+        function switchTab(tabId) {
+            // Hide all tab contents
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.add('hidden'));
+
+            // Show selected tab
+            const targetTab = document.getElementById('tab-' + tabId);
+            if (targetTab) {
+                targetTab.classList.remove('hidden');
+            }
+
+            // Update desktop nav buttons styling
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.className = 'nav-btn px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50 transition';
+            });
+
+            const activeNavBtn = document.getElementById('nav-' + tabId);
+            if (activeNavBtn) {
+                activeNavBtn.className = 'nav-btn px-3 py-2 rounded-lg text-sm font-bold text-indigo-600 bg-indigo-50 transition';
+            }
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.className = 'fa-solid fa-xmark text-xl';
+            } else {
+                menu.classList.add('hidden');
+                icon.className = 'fa-solid fa-bars text-xl';
+            }
+        }
+
+        function renderArtworks(dataToRender) {
+            const grid = document.getElementById('artworkGrid');
+            document.getElementById('artworkCount').innerText = dataToRender.length;
+
+            if (dataToRender.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-16 text-center space-y-3 bg-white rounded-3xl border border-gray-100 shadow-sm">
+                        <i class="fa-solid fa-face-sad-tear text-4xl text-gray-300"></i>
+                        <p class="text-gray-500 font-medium">找不到符合條件的繪畫作品，請嘗試其他關鍵字。</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            dataToRender.forEach(art => {
+                html += `
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <!-- Artwork Image Container -->
+                            <div class="h-56 overflow-hidden relative bg-gray-100">
+                                <img src="${art.image}" alt="${art.title}" onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Artwork';" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <span class="absolute top-3 left-3 bg-gray-900/80 backdrop-blur-md text-white text-xs font-bold px-2.5 py-1 rounded-lg">
+                                    ${art.code}
+                                </span>
+                                <span class="absolute top-3 right-3 bg-indigo-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg shadow">
+                                    ${art.categoryName}
+                                </span>
+                            </div>
+                            <!-- Artwork Details -->
+                            <div class="p-5 space-y-2">
+                                <h3 class="font-bold text-base text-gray-900 group-hover:text-indigo-600 transition">${art.title}</h3>
+                                <p class="text-xs text-gray-500 font-medium"><i class="fa-solid fa-user-pen mr-1 text-indigo-500"></i>${art.author}</p>
+                                <div class="flex items-center justify-between pt-2">
+                                    <span class="text-xs text-amber-600 font-black"><i class="fa-solid fa-fire mr-1"></i>目前得票：${art.votes.toLocaleString()} 票</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Vote Action Button -->
+                        <div class="p-5 pt-0">
+                            <button onclick="openVoteModal('${art.code}', '${art.title}')" class="w-full py-2.5 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white text-xs font-bold rounded-xl shadow transition flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-check-to-slot"></i>
+                                <span>投它一票</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function filterArtworks() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const category = document.getElementById('categoryFilter').value;
+
+            let filtered = artworks.filter(art => {
+                const matchesQuery = art.title.toLowerCase().includes(query) || art.author.toLowerCase().includes(query) || art.code.toLowerCase().includes(query);
+                const matchesCategory = (category === 'all' || art.category === category);
+                return matchesQuery && matchesCategory;
+            });
+
+            // Maintain current sorting order
+            sortArtworksArray(filtered);
+            renderArtworks(filtered);
+        }
+
+        function sortArtworks() {
+            filterArtworks();
+        }
+
+        function sortArtworksArray(arr) {
+            const sortBy = document.getElementById('sortSelect').value;
+            if (sortBy === 'votes') {
+                arr.sort((a, b) => b.votes - a.votes);
+            } else if (sortBy === 'id') {
+                arr.sort((a, b) => a.id - b.id);
+            } else if (sortBy === 'name') {
+                arr.sort((a, b) => a.title.localeCompare(b.title, 'zh-Hant'));
+            }
+        }
+
+        function openAuthModal() {
+            document.getElementById('modalTitle').innerText = '投票身分驗證與授權';
+            document.getElementById('modalSubtitle').innerText = '為了維護投票公平性，避免惡意灌票，請選擇以下方式快速完成身分驗證或填寫投票資料：';
+            document.getElementById('modalSubmitText').innerText = '確認提交並完成投票';
+            document.getElementById('authModal').classList.remove('hidden');
+        }
+
+        function openVoteModal(code, title) {
+            document.getElementById('modalTitle').innerText = `為作品 [${code}] 投票`;
+            document.getElementById('modalSubtitle').innerText = `您正在為「${title}」投票。請完成下方快速登入或填寫驗證，以確認您的投票權益：`;
+            document.getElementById('modalSubmitText').innerText = '送出投票並確認';
+            document.getElementById('authModal').classList.remove('hidden');
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').classList.add('hidden');
+        }
+
+        function simulateSendCode() {
+            const phoneInput = document.getElementById('fakePhone').value;
+            if (!phoneInput || phoneInput.length < 9) {
+                // Safe custom message box instead of alert()
+                showCustomMessage('請先輸入正確的手機號碼才能接收驗證碼！');
+                return;
+            }
+            showCustomMessage('【系統提示】已發送簡訊驗證碼至 ' + phoneInput + '（此為模擬演練，驗證碼為：888999）');
+            document.getElementById('fakeCode').value = '888999';
+        }
+
+        function showCustomMessage(msg) {
+            // Safe non-blocking custom notification banner inside modal
+            const subtitle = document.getElementById('modalSubtitle');
+            const originalText = subtitle.innerText;
+            subtitle.innerHTML = `<span class="text-amber-600 font-bold"><i class="fa-solid fa-circle-info mr-1"></i>${msg}</span>`;
+            setTimeout(() => {
+                subtitle.innerText = originalText;
+            }, 4000);
+        }
+
+        // CRITICAL ANTI-PHISHING TRIGGER
+        function triggerAntiPhishingWarning() {
+            // Close the fake auth/vote modal immediately
+            closeAuthModal();
+
+            // Open the Cybersecurity Warning Modal
+            document.getElementById('warningModal').classList.remove('hidden');
+        }
+
+        function closeWarningModal() {
+            document.getElementById('warningModal').classList.add('hidden');
+            switchTab('home');
+        }
+
+        // Initial render on window load
+        window.onload = function() {
+            filterArtworks();
+        };
+    </script>
+</body>
+</html>
